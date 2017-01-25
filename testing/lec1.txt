@@ -1,0 +1,70 @@
+1/23/17
+review chapter 1 for next class
+Discrete math review + ch1
+
+Proposition -- statement that's true or false
+
+proposition for any nonnegative integer n
+  n**2 + n + 41 is prime.
+  p(40) = 40**2 + 40 + 41    false statement, but a proposition nontheless.
+
+proposition Euler's conjecture 1769
+a^4 + b^4 + c^4 = d^4 no solution when a, b, c, d > 0.
+(a,b,c,d) = (95800,217519,414560,422481)
+
+proposition Fermat's last theorem 1630
+there are no positive integers 
+x,y,z such that x^n + y^n = x^n where n > 2.
+true
+
+proposition Goldbach's conejecture. 1742
+every even integer > 2 is the sum of 2 primes
+holds true for all nunmbers up to 10^18. we don't know yet.
+
+Predicate -- proposition whose truth value depends on some variable(s)
+p(n) = "n is a perfect square."
+under what circumstances is that statement true?
+
+Logical Deduction
+Rule
+ p, p->q, then q. // implication  (!p || q)
+
+example proof:
+Given any x : x <=2 && x >= 0
+x, 2-x, 2+x are >= 0
+therefore, their product is also >= 0.
+Adding 1 to the number gives a + number
+x(2-x)(2+x) + 1 > 0.
+x(4-x^2) + 1 > 0.
+-x^3 + 4x + 1 > 0.
+
+Prove the contrapositive:
+  p -> q logically equivalent to ~q -> ~p  (~(p && ~q))
+
+If r is irrational, then sqrt(r) is also irrational
+proof:
+We prove the contrapositive,
+Suppose sqrt(r) is rational.
+Then, there exist integers m, n such that sqrt(r) = m/n.
+then, r = sqrt(r) * sqrt(r) = (m^2 / n^2).
+m^2 and n^2 are also integers, so r is rational.
+
+prove p<->q<-> by showing p = q = r
+show p<->q  and q<->r
+can also show p->q q->r r->p
+
+proposition p, q
+!p
+p&&q
+p||q
+p->q
+p<->q
+pXORq
+
+* SAT Problem -- Important for testins
+  given some formula
+  (p||q&&r)
+     find values for p, q, r such that the formula is true.
+  solution:
+  	(p,q,r) = (t,f,f)
+  
