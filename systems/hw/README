@@ -1,0 +1,4 @@
+hw1
+This homework contains a programming part (Q1-Q2) and a theory part (Q3-Q8). The theory part should be written or typed on a paper and submitted at the beginning of the class. The source code (Java files) of the programming part must be uploaded through the canvas before the end of the due date (i.e.,11:59pm in Feb. 2nd). The assignment should be done in teams of two. You should use the templates downloaded from the course github (https://github.com/vijaygarg1/EE-360P.git). You should not change the le names and function signatures. In addition, you should not use package for encapsulation. Note
+that, we provide some test cases for your convenience in SimpleTest class. You do not need to modify the class. Please zip and name the source code as [EID1 EID2].zip. 
+
