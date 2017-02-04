@@ -1,0 +1,6 @@
+[submodule "systems/garg"]
+	path = systems/garg
+	url = git@github.com:vijaygarg1/EE-360P.git
+[submodule "systems/code"]
+	path = systems/code
+	url = git@github.com:ronny-macmaster/systems.git
