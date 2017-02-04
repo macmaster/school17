@@ -1,0 +1,262 @@
+--Lecture 1
+1/23/17
+review chapter 1 for next class
+Discrete math review + ch1
+
+Proposition -- statement that's true or false
+
+proposition for any nonnegative integer n
+  n**2 + n + 41 is prime.
+  p(40) = 40**2 + 40 + 41    false statement, but a proposition nontheless.
+
+proposition Euler's conjecture 1769
+a^4 + b^4 + c^4 = d^4 no solution when a, b, c, d > 0.
+(a,b,c,d) = (95800,217519,414560,422481)
+
+proposition Fermat's last theorem 1630
+there are no positive integers 
+x,y,z such that x^n + y^n = x^n where n > 2.
+true
+
+proposition Goldbach's conejecture. 1742
+every even integer > 2 is the sum of 2 primes
+holds true for all nunmbers up to 10^18. we don't know yet.
+
+Predicate -- proposition whose truth value depends on some variable(s)
+p(n) = "n is a perfect square."
+under what circumstances is that statement true?
+
+Logical Deduction
+Rule
+ p, p->q, then q. // implication  (!p || q)
+
+example proof:
+Given any x : x <=2 && x >= 0
+x, 2-x, 2+x are >= 0
+therefore, their product is also >= 0.
+Adding 1 to the number gives a + number
+x(2-x)(2+x) + 1 > 0.
+x(4-x^2) + 1 > 0.
+-x^3 + 4x + 1 > 0.
+
+Prove the contrapositive:
+  p -> q logically equivalent to ~q -> ~p  (~(p && ~q))
+
+If r is irrational, then sqrt(r) is also irrational
+proof:
+We prove the contrapositive,
+Suppose sqrt(r) is rational.
+Then, there exist integers m, n such that sqrt(r) = m/n.
+then, r = sqrt(r) * sqrt(r) = (m^2 / n^2).
+m^2 and n^2 are also integers, so r is rational.
+
+prove p<->q<-> by showing p = q = r
+show p<->q  and q<->r
+can also show p->q q->r r->p
+
+proposition p, q
+!p
+p&&q
+p||q
+p->q
+p<->q
+pXORq
+
+* SAT Problem -- Important for testins
+  given some formula
+  (p||q&&r)
+     find values for p, q, r such that the formula is true.
+  solution:
+  	(p,q,r) = (t,f,f)
+
+
+--Lecture 2
+1/25/17
+SAT problem can yield many, one, or zero solutions.
+sets, relations, functions, induction...
+set -- bunch of elements or objects.
+examples:
+D = { 1, 2, 4, 8, ... }
+
+union:
+  x \in A U B <=> x \in A or x \in B
+intersection:
+  x \in A ^ B <=> x \in A and x \in B
+difference:
+  x \in A - B <=> x \in A and not x \in B
+power set:
+  set of all subsets
+
+sequence -- list of objects
+  (a, b, c)   or  [a, b, c]
+  lists have an ordering, and we can have permutations.
+  "what is the first element in the list?"
+  lists can also have repetition   (a, b, a, c)
+  write a list as a set: {(0, a), (1, b), (2, a), (3, c)}
+  
+Functions -- f: A -> B
+  set A = domain. set B = codomain.
+  sq : N -> N
+  sq(0) = 0, sq(4) = 16
+  N = { 0, 1, 2, 3, ... }
+
+  sqrt: R->R+
+
+Relations -- r: A x B
+  r is a relation between A and B.
+  r = {(a, 1), (a, 3), (b, 2)}
+
+  reflexive:
+  r: A x A
+  (for all a \in A, (a, a) \in r)
+    ==: N X N  is reflexive.
+  
+  symmetric:
+  for all a, b \in A,
+  (a, b) \in r <=> (b, a) \in r
+
+  transitive: 
+  ((a, b) \in r and (b, c) in r => (a, c) in r).
+
+  <=: N X N
+  { (0, 0), (0, 1), (1, 1), (1, 2), ... }
+  reflexive and transitive. not symmetric...
+
+for testing use: 
+traversing a graph, keeping track if you're in a cycle or not with Collections style add...
+
+
+java.lang.Object
+bool Object::equals(Object &other);
+equals method MUST implement an equivalence relation.
+  reflexive, symmetric, and transitive...
+
+--Lecture 3
+Induction, then book concepts...
+Induction principle: 
+Let P be a predicate on nonnegative integers.
+if: 
+	1) P(0) is true 
+	2) P(n) -> P(n+1) for all non negative integers.
+then P(m) is true for all nonnegative integers m.
+
+Theorem, for all nonnegative integers n,
+	1+2+3+...+n = (n)(n+1)/2
+
+proof:
+base case : P(0) is true. (lhs == rhs == 0)
+inductive step: 
+supose P(n) is true,
+then 1+2+3+...+n = (n)(n+1)/2.
+then for n+1,
+1+2+3+...+n+n+1 = (n)(n+1)/2  +  n+1
+= ((n)(n+1) + 2(n+1)(n+1)) /2 = (n+2)(n+1)/2
+
+
+False theorem.
+All horses are the same color
+In every set of n>=1 horses, all the horses are the same color.
+(n is a nonnegative integer)
+once you have a predicate in n, you can attempt induction.
+bogus proof of theorem:
+base case: n = 1. for any set of 1 horse, there is only 1 color, and the horse is the same color as itself.
+indcuction:
+left n>= 1, and assume P(n)
+consider the a set of n+1 horses:
+h1,h2,...,hn,h(n+1)
+we need to prove that these n+1 horses are the same color.
+by our assumption, first n horses are the same color.
+also, by our assumption, the last n horses are the same color.
+h2,...,hn.h(n+1).
+so, h1 is the same color h2,....,hn, and h(n+1) is the same color as h2,....,hn.
+therefore, h1 is the same color as h(n+1).
+
+what if there are just 2 horses?
+the two sets are disjoint, no intersection / overlap.
+the following logic is invalid on that claim...
+
+Chapter 1:
+activities of a test engineer.
+traditional based on software activity. beizer's testing levels based on process maturity.
+testing basics and coverage criteria for testing.
+
+activities of a test eng:
+design tests by creating reqs. transform from reqs into values and scripts that execute. tests.
+execute software under test, evaluate results of the test.
+
+acceptance testing: check if the software acceptable to the user
+system: check system as a whole.
+integration testing: check interactions among different modules. 
+module testing: check how each module behaves.
+unit: check how small units of code behave individually.
+
+Beizer's testing levels high to low...
+testing is a mental discipline that helps software professionals dev higher quality software.
+purpose not to prove anything specific, but to reduce the risk of using the software.
+show software doesn't / does work.
+no diff between testing and debugging
+
+--  validation and verification
+validation: process of evalutating software at end of dev to ensure compliance with intended usage
+	Are we building the right system?
+verification: process of determining whether products of a given phases of dev process fufill the reqs established during previous phase.
+	Are we building the system right? Is the implementation correct given the system design?
+
+fault: incorrect line of code
+error: (unobserved) incorrect states caused by faults 
+failures - (observed) output errors caused by incorrect, error states.
+
+thre conditions must be  satisfied for a failure to be observed.
+reachability: must be reachable in the code.
+infectability: executing fault must lead to an incorrect state.
+propogation: error state must propogate to an incorrect output.
+
+observability: how easy is it to observe behavior in terms of outputs.
+effects on environment and hardware/software components.
+
+controllability. how easy to provide the program the needed inputs in terms of values, ops, and behaviors.
+
+test requirements - specific elements of software artifact our test case must cover / satisfy.
+some reqs infeasible
+
+coverage criterion: rule or collections of rules that impose test reqs on test suites. 
+coverage: given TR for a covereage criterion C, test suit T satisfies C if and only if for each tr in TR, at least one test in T satisfies tr.
+
+Coverage level: given reqs TR and test suite T, coverage level is #reqs satisfied by T / |TR|
+
+--Lecture 4
+error: failure state in the program that can't be seen from the outside.
+some errors propogate to failures, some do not.
+
+reachability, infection, and propogation.
+
+*understand the basic idea of coverage...
+coverage level - # reqs satisfied by T / |TR|
+test requirement - specific element of the program that a test case must cover / satisfy.
+coverage criterian - rule or collection of rules that impose test reqs on a test suite.
+coverage : given test reqs TR for criterion C, test suite T satisfies C if and only if for each tr in TR, at least one test in T satisfies tr.
+100% code coverage does NOT imply zero faults
+
+assertTrue(...);
+
+
+Subsumption
+criterion C1 subsumes criterion C2 if and only if every test suite that satisfies C1 also satisfies C2
+must be true for EVER test suite...
+ex. branch coverage and statement coverage
+if a suite covers every branch, then it covers every statement.
+black-box: derive from external descriptions, specs, design, requirements
+white box: devive from source code internals: branches, conditions, statements.
+
+criteria to define criteria,
+cfgs, logical expression, syntactic structure, input domain characterization.
+
+Chapter 2:
+define test requirements using graph elems.
+create a graph abstraction. ex, control-flow.
+evaluate how test execution paths cover test requirements.
+No ⊆ N is a set of initial nodes.    Nf ⊆ N is a set of final nodes.
+
+
+
+
