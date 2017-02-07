@@ -259,4 +259,65 @@ No ⊆ N is a set of initial nodes.    Nf ⊆ N is a set of final nodes.
 
 
 
+--Lecture 5
+HW1 is out on canvas.
+graphs are used to abstract the software artifact to test.
+
+**Syntactically reachable if there exists a path from m to n.
+let reach(x) be set of nodes reachable from x. (connected component.
+can define rreachability from a set of nodes too.
+Union of reachablity for the individual nodes.
+you can also define reachability on an edge...
+
+**test path - a path p  (poss of length 0) 
+starts at an initial node, ends at a final node.
+deterministic code, each test executes a unique path.
+non deterministic code, each test may execute multiple paths.  (randomization)
+p visits n if n is on p. p visits e if e is in p.
+path(t) for test path executed by test t.
+suite T, path(T) = { path(t) | t ∈ T }
+
+
+nondeterministic programs - randomization, multiple threads, garbage collection.
+hash sets, different implementations of the set interface. not guaranteed a specific execution order in a loop.
+If your program makes decisions on some  nondeterministic quality, you will likely have faults in your code.
+
+2 common forms of test criteria - structural graph coverage and data flow coverage.
+test req is met by visiting a particular node or edge or touring a particular path.
+Graph coverage - given test reqs TR for a graph criterion C, test suite T sat C iff there is some path that meets t.
+
+structural coverage
+nod - for each node in reach(N0), TR contains predicate "visit n"
+edge - TR contains each reachable path of length up to 1 (inclusive) in G
+let tests t1 and t2 be such that: path(t1) = <n0, n1, n2> and path(t2) = <n0, n2>
+{t1} gives node coverage, {t1, t2} gives edge coverage.
+
+edge-pair coverage. tr contains each reachable path of up to length 2 of G
+prime path - is a simple path that is not a proper subpath of another simple path
+prime path coverage - TR contains each prime path in G
+	- elegant way to treat loops
+complete path coverage - covers all paths in G.
+
+*****Algorithm for finding prime paths : *****
+start with paths of length 0, extend to length 1.
+prime path - MAXIMAL simple path that CANNOT be EXTENDED without losing its simplicity.
+prime paths, no mention of iterating a loop more than once. requires to skip a loop, do a loop once, do a loop more than once.
+sometimes, satisfying a requirement EXACTLY is hard. side trips and detours...
+tours - test path tours q if q is a subpath of p.
+tour with sidetrips - p tours q w. sidetrips if every edge in q is also in p in order.
+tour with detours - p tours q with detours if every node in q is also in p in order.
+
+
+Data flow criteria
+focus on data values
+def- location where value of a var is stored in memory
+use - location where value is accessed.
+def(x) and use(x). vars definied and used at an edge or node
+du-paths and def-clears paths. 
+
+label the nodes in terms of defs and uses.
+all defs, all uses, all du paths.
+
+Check out his subsumption slide on canvas!!
+
 
