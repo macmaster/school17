@@ -320,4 +320,85 @@ all defs, all uses, all du paths.
 
 Check out his subsumption slide on canvas!!
 
+-- Lecture 6
+Up to and including today's class.
+Graph coverage for design specs use-cases.
+to practice: look over textbook problems. sets, relations, and graphs could be covered.
+Chapter 1 and 2 will be on the exam. not chapter 3.
+dataflow criteria
+1 def, 2 uses.
+All uses coverage subsumes edge coverage.
+know the control flow graphs for if, else, while, and for loops
+
+def - occurs for a variable x if:
+	x appears on lhs of assignment. 
+	x is a formal parameter (implicit def when it executes)
+	x is an input from the console.
+	can be complex for arrays and references. 
+	last def is the one that matters.
+
+use - occurs for a variable x:
+	x appears on rhs of assignment.
+	x appears in a condition
+	x is an actual parameter in method invocation
+	x is an output
+	x appears in the body of the return statement.
+
+"If def and user for a var a happens on the same node n, (n , n) is a du-pair if def occurs after the use && the node is in a loop."
+
+variable nesting can complicate CFGs.
+DU Pairs formed for stats. 
+each row represents variables. 
+def before uses don't count as DU pairs.
+def after use in a loop COUNTS as a vaild du pair.
+"include only def-clear path, different scope for i.
+no path through graph "
+38 du paths for stats, but only 12 unique.
+
+2.4 - graph coverage for design elements.
+focus: couplings - measure dependency relations between units and focus on interconnections.
+faults in one unit may effect the coupled unit.
+call graph - nodes represent methods and edges rep invocations. 
+method coverage - each method be invoked at least once.
+call coverage - each invocation in code can be executed at least once.
+
+inheritence hierarchies and polymorphism.
+coverage requires object creation. by itself, it's weak.
+parameter coupling - parameters are passed in calls.
+shared data coupling - two methods access the same data object as a global
+external device coupling - two methods access the same external medium (file system)
+
+parameter coupling
+caller- method that invokes another method
+callee - method invoked
+call site - statement that makes the call
+actual param - value passed at call site.
+formal param - variable in method decl
+look at the last def in caller with first use in the callee
+
+shared data coupling
+m calls a nd b
+a calls e
+b calls f
+e defines
+f uses
+
+2/5 graph coverage for specs
+sequencing constraints - restrictions on the order in which methods may be invoked.
+implicit or explictly expressed.
+implicit preconditions and posconditions.
+
+static checking where all paths in a client are checked for conformance to constraints.
+dynamic checking - test requs consist of constraint violation. if a test meets req, a bug is found.
+
+example  file-ADT
+open must be exec before every write
+open must be exe before close
+write must not be after close unless open before
+write before every close
+close must not be done after a close unless open in between
+open must not be done after open unless a close before.
+
+exxample test requirements. get a test exec that violates a constraint.
+cover every path from start of write to such apath with no open node.
 
