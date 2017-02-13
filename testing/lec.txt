@@ -402,3 +402,131 @@ open must not be done after open unless a close before.
 exxample test requirements. get a test exec that violates a constraint.
 cover every path from start of write to such apath with no open node.
 
+-- Lecture 7
+Graph Logic (3.1 and 3.2 today)
+ch2 cfgs, ch3 if-conds, ch4 input-domain / sorted array, syntactic structs ch5.
+
+predicate - any expr that evals to a boolean value. ex. ((a > b) || C) && p(x)
+clause - predicate that contains no logical operator. ex. (a > b), C, or p(x).  smallest form of a predicate.
+3.2 logic expr coverage criteria:
+P: set of predicates
+C: set of clauses in predicates P
+
+Predicate Coverage:
+for each p in P, TR contains two reqs.  p evals to true    and    p evals to false.
+
+Clause Coverage:
+for each c in C, TR contains two requirements  c evaluates to true and c evaluates to false.
+
+**PC does not subsume CC and CC does not subsume PC!!!
+
+Combinatorial coverage:
+Cp set of clauses in predicate p
+for each p in P, TR has test reqs for the clauses in Cp to evaluate each possible combo of truth values.
+"Multiple condition coverage"
+
+example: !a||b
+a	b	!a||b
+f	f	T
+f	t	t
+t	f	f
+t	t	t
+
+root of coverage criteria tree. requires 2^n test reqs.
+
+
+Determination
+apture the effect of each clause using a reasonable number of tests.
+"Where does flipping a clause flipp a predicate? How does a clause determine the predicate?"
+major and minor clauses. ci and cj (i != j)
+Determination: 
+major clause ci determines the predicate p 
+if the minor clauses have values such that changing the value of ci changes the value of p.
+
+Active Clause coverge:
+TR has two reqs for each active clause ci in Cp for each p in P. ci evals to true and ci evals to false.
+ex. p = a || b
+a determines p iff b is false. likewise for b.
+4 requirements
+ci = a:{<(a,b)=(t,f)>, <(a,b)=(f,f)>}
+ci = b:{<(a,b)=(f,t)>, <(a,b)=(f,f)>}
+2 of these requirements are identical, so 3 reqs in total!.
+
+CACC and RACC
+RACC: minor clauses must be the same when ci is true as when ci is false.
+
+example: a && (b||c)
+a determines p when (b||c) is true: <b,c> in {(t,t), (t,f), (f,t)}
+CACC: pick one of {1, 2, 3} and {5, 6, 7}
+RACC: {1, 5},   {2, 6}, {3, 7}
+Are the minor clauses values such that the major clause is active??
+
+Inactive Clause Coverage:
+check that changing a clause that should not affect the predicate .. does not affect it.
+for each p in P and each major clause ci in Cp, choose minor clauses cj such that ci does not determine p.
+TR has 4 reqs for ci.
+ci evals to true with p true.
+ci evals to false w p true
+ci evals to true w p false
+ci evals to false w p false.
+
+look at the subsumption graphs!.
+
+Complete Clause Coverage
+restricted active	restricted inactive
+correlated active	general inactive
+clause coverage	 x	predicate coverage
+
+corr active and gen active both consume clause and pred coverage.
+
+Make a clause determine a predicate:
+let p be a predicate and let c be a clause in p.
+let ptrue = p with c set to true
+let pfalse = p with c set to false.
+then solutions to formula ptrue XOR pfalse give values for minor clauses such that major clause c determines p.
+example: p = a || b
+make a active, so pa = patrue XOR pafalse
+	= true || b  XOR  false || b
+	= true XOR b
+	= !b
+there is one solution to pa, b must be false.
+thus, setting b to false makes clause a active.by symmetry: pb = !a.
+
+another: a <-> b
+pa = (true <-> b) XOR (false <-> b)
+	= b XOR !b
+	= true.
+b can be anything, and a is the active clause.
+by symmetry, pb = true.
+
+
+interesting example: a&&b || a&&!b
+pb = aXORa = false
+there is no value for a which will be a solution
+no value for a that makes b active!
+
+with 3 clauses: a&&(b||c)
+pa = (b||c)XORfalse
+= b||c
+three solution pairs, tt, tf, ft.
+exercise: make b active.
+
+
+test example
+1. identify the fault
+fault is a static software defect
+failure is an external incorrect behavior with respect to a spec.
+x <= 0 instead of x < 0.
+
+if you dont execute the fault, "you don't see a failure."
+example : {}
+
+executes fault without failur
+example : {1 , 2, 3}
+
+executes with fault and failure
+example: {0, 2}
+returns true, but should return false.
+
+you can have a program which is faulty with no failure on certain executions.
+
