@@ -1,0 +1,40 @@
+
+** SMiTE
+Prior work is good at predicting perf and QoS for resources shared ACROSS cores.
+Very hard to do for resources shared within SMT cores. (Simultaneous Multi Threading).
+interference across different shared resources (caches, mem ports, exec units) do not correlate w. each other.
+
+-- Sensitivity vs. Contentiousness for a shared resource
+sensitivity- how much the main application degrades.
+contentiousness - how much it causes other applications to degrade.
+sensitivity and contentiousness are not correlated; must be measured seperately! varies unpredictable across applications...
+
+Optimization Process:
+Design a set of rulers (software stressors) to capture application sensitivity and contentiousness for each shared resource in a decoupled manner.
+Build a regression model off the sensitivity and contentiousness measurements. 
+Steer the cluster-level scheduling decisions to achieve better server utilization.
+
+Emerging Cloud workloads vs. Traditional Workloads
+Functional unit contentiousness about the same.
+Cloud applications have higher memory contention. 
+Cloud applications share similary memory sensitivity as traditional apps.
+
+sharing dimension - continual conflicts / sharing on a specific port  of a shared resource. variance of this is very high!.
+
+
+**Yang
+preserve the performance of a foreground process while permitting background "transparent" threads to do small computations.
+background work can be used for menial OS or other work. scheduling, monitoring, subordinate mt, etc...
+
+methodology: slot prioritizaition, background thread instruction-window partitioning, and background thread flushing. aggressive fetch partitioning, forground thread instruction-window partitioning, and foreground thread flushing.
+
+background threads introduce less than 1% performance on the FG thread.
+"Threads that utilize resources less efficiently often receive fewer resources and run slower." // troublesome from a QoS perspective.
+Goal: preserve the performance of the foreground, latency-sensitive threads while allowing background threads.
+
+things we can do:
+process scheduling: when entering a latency-critical section, downgrade all non-critical tasks to transparent threads.
+subordinate multithreading: perform computations on behalf of a primary thread in the background.
+performance monitoring: execute profiling code (usually baked into the application executable) independently in the background.
+
+
