@@ -1,0 +1,26 @@
+Pi::
+	var pendingQ: list of process ids initially empty;
+	var myts: integer initially ∞;
+	var numOkay: integer initially 0;
+	var k: constant integer; // max # of processes in CS at one time.
+
+request:
+	myts := logical clock;
+	send request with myts to all other processes;
+	numOkay := 0;
+
+On receive(u, request) from Pj :
+	if (u.myts, j) < (myts, i)) then
+	send okay to process Pj ;
+	else append(pendingQ, j);
+
+receive(u, okay):
+	numOkay := numOkay + 1;
+	if (numOkay = N − k) then
+	enter critical section;
+
+release:
+	myts := ∞;
+	for j ∈ pendingQ do
+	send okay to the process j;
+	pendingQ := empty queue;

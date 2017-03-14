@@ -1,0 +1,26 @@
+Pi::
+	var q: queue of (int, pid) initially empty;
+	var cset: set of (int, pid) initially empty;
+	var numAcks: integer initially 0;
+	var n: integer initially 0 (# of processes in CS);
+	var k: constant integer (max # of processes in CS);
+
+request:
+	send request with (logicalClock, i) to all other processes;
+	numAcks := 0;
+	insert own timestamp into q.
+
+On receive(request, (ts, j))) from Pj :
+	insert (ts, j) in q;
+
+On receive(u, ack):
+	numAcks := numAcks + 1;
+	if (numAcks = N − 1) and Pi’s request smallest in q then enter critical section;
+
+On receive(u, release) from Pj :
+	delete the request by Pj from q
+	if (numAcks = N − 1) and Pi’s request smallest in q then enter critical section;
+
+release:
+	send release to all processes;
+

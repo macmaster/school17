@@ -1,0 +1,40 @@
+Pi::
+	var q: queue of (int, pid) initially empty; // processes waiting to enter CS
+	var cset: set of (int, pid) initially empty; // processes currently in CS
+	var k: constant integer; // max # of processes in CS at one time.
+	var numAcks: integer initially 0;
+
+request:
+	send request with (logicalClock, i) to all other processes;
+	insert (logicalClock, i) into q;
+	update cset;
+	numAcks := 0;
+
+On receive(request, (ts, j))) from Pj :
+	insert (ts, j) into q;
+	update cset;
+	send ack reply;
+	
+On receive(u, ack):
+	numAcks := numAcks + 1;
+	if (numAcks = N − 1) and Pi’s request is in the cset, then enter critical section;
+
+On receive(u, release) from Pj :
+	dequeue the request timestamp by Pj in q;
+	update cset;
+	if (numAcks = N − 1) and Pi’s request is in the cset, then enter critical section;
+
+release:
+	send release to all processes;
+	dequeue the request timestamp by Pi in q;
+	update cset;
+
+update cset:
+	reinitialize cset to an empty set;
+
+	for i = 1..k:
+		val = q.dequeue();
+		insert val into cset;
+	
+	reinsert each value in cset  back into q;
+	
