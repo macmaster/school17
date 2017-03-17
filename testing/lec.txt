@@ -530,3 +530,194 @@ returns true, but should return false.
 
 you can have a program which is faulty with no failure on certain executions.
 
+--Lecture 8
+notes on sheet.
+--Lecture 9
+find paths from prestate to poststate.
+predicates and specifications.
+informal and formal
+mapping problem variables between state machine and program.
+
+-- Lecture 10
+this week : chapter 4.
+instead of looking at the implementation lvl details in source code,
+we will look at the API.
+Domain d, partitioning scheme q.
+input domaind modeling (IDM).
+
+blocks must be pairwise disjoint. (bi and bj for i!=j  is empty set)
+blocks are complete. (union to the set)
+
+input domain - set of all possible values for an integer. 
+coverage criteria provide a way to partition the input space according to the test req. ex. "all inputs that execute the same path."
+all inputs in a block are equally useful.
+
+ch2 and 3 and white-box level. ch4 is black-box level. 
+consider each param domain seperately. partition each domain into blocks.
+identitfy a rep value for each block. combine blocks and strategies according to serveral criteria.
+find "characteristics" in the input
+
+is "order of the file" a valid characteristic?
+no. what if the file is of length 1?
+
+model the input domain in five steps.
+identify functionality, ex method under test. create an IDM, scope based on inputs. apply a test criterion to form block combos. one block char at a time. 
+interface-based. only at interface level in isolation. easy to define tests, but ignores param relationships.
+functionality-based.  considers characteristics based on intended functionality to incorporate domain knowledge.
+can utilize reqs and specs in idm, but requires more effort.
+
+int triang(int side1, int side2, int side3);
+interface-based: relation of side to 0. 
+functionality-based: type of the triangle.
+
+how to choose characteristics: 
+relation of param with special values like 0, null, or empty.
+consider aliasing possibilities. use preconditions and postconditions.
+more blocks -> more tests!
+
+** LEARN pairwise coverage.!!
+
+-- Lecture 11
+input domain characterization.
+which combinations do we choose values from?
+- All Combinations Coverage (ACoC): All combinations of blocks from all chars must be used.
+number of tests is product of number of blocks in each characteristic.
+
+- Each Choice Coverage (ECC): One value from each block for each characteristic must be used in at least one test case. Number of tests is the least number of blocks in the largest characteristic. 
+
+- Pairwise Coverage (PWC): A value from each block for each characteristic must be combined with a value from EVERY block for each other characteristic. number of tests is at least the product of the two largest characteristics.
+
+pick any pair (ex. > 1 for first, == 0 for 2nd) you can find a test.
+
+- T Wise coverage (TWC): a value from each block for each group of t characteristics must be combined. pairwise is quite useful. going to 3 or 4 might not provide that much more benefit compared to increasing cost.
+
+** Important::::
+Base Choice Coverage (BCC): 
+A base choice block is chosen for each characteristic, and a base test is formed by using the base choice for each characteristic. Hold all but one base choice constant and using each non base choice in each other characteristic. 
+number of tests is one base test + one test for each other block. 
+1 + ni*sum(bi - 1). 
+
+fix two characteristics. let the third take all the other non base choice values. 
+
+** study the subsumption graph
+constraints among partitions:
+some block combos are infeasible. ex. invalid and scalene.
+constraints capture feasibility properties.
+a block from one char cannot be combined with a specific other block
+or maybe it can ONLY be combined with a spec other block
+
+-- Lecture 12
+made use of how it's written. 
+Now, we will make modifications to the source code.
+behavior of tests on many variations of a program.
+syntax-based testing.
+
+using a grammar ( or regex ) to specify test inputs. basics of mutation.
+program-based grammars. integration and oo testing. 
+language - set of strings
+examples: java language - set of all strings that are valid java programs.
+language of primes - set of all decimal digit strings that are prime numbers
+language of java keywords - {"abstract", "assert", "boolean", "break", ...}
+. - concatenation a|b = {"a", "b"}
+| - alternation (a|b).a = {"aa", "ba"}
+e - epsilon is ""
+repetition(*) 0+ repetitions. it's unbounded.
+a* = {"", a, aa, aaa, ... }
+((a | b) . a)* = {"", "aa", "ba", "aaaa", "aaba", "baaa", "baba"}
+
+each regex represents a language. each lang is a set of strings.
+language consists of strings which are test cases. 
+a language where each string is  a JUnit test case. 
+
+example:
+SLList class    add(int x)   remove(x)
+
+regex ((add.0) | (remove.0))*
+gives an abstract rep of a large test suite. VERY LARGE
+""  
+"add 0"
+"remove 0"
+"add 0 add 0"
+"remove 0 remove 0"
+"add 0 remove 0"
+"remove 0 add 0"
+...
+
+
+translate it to java code
+SLList l = new SLList();
+l.add(0);
+l.remove(0);
+...
+
+
+context free grammar - defines a language using a set of productions of the form sym -> sym -> syym`u
+lhs is a non-terminal
+each sym is terminal or non terminal
+one symbol is distinguished as the start symbol
+| indicates a choice
+sym* - 0 or more reps of sym
+sym+ - 1 or more reps of sym
+sym^k - exactly k reps of sym
+sym^m-n - at least m and at most n repetitions
+
+RECOGNIZERS - DECIDE IF THE STRING IS IN THE LANGUAGE
+GENERATORS - CREATE STRINGS THAT ARE IN THE LANGUAGE
+TEST INPUT GENERATION
+EXAMPLE DERIVATION:
+	S -> M
+	-> I N
+	-> ADD N
+	-> ADD D1-3
+	-> ADD D
+	-> ADD 0
+
+example grammar
+S is the start symbol
+S->M
+M->n
+I-> add | remove
+N-> D^1-3
+D-> 0|1|2|3|4|5|^|7|8|9
+
+Terminal symbol coverage (TSC) Each terminal shows up in at least one test.
+production coverage(PDC) - TR contains each production in the grammar.
+derivation coverage(DC) - contains every string that can be derived from the grammar. impractical to use. 
+
+** Mutation - to generate invalid inputs
+using a grammar as a generator allows generating strings that are in  the language. calid inputs
+sometimes invalid inputs are needed to check exception handling behavior or observe failures
+invalid inputs can be created using - mutation   (syntactic modification)
+
+mutate symbols in a ground string    add 0 -> remove 0
+ground string - only consists of terminals. 
+mutate grammar and derive ground strings    ex I->"add | remove"      --->   I -> "add | delete"
+
+read the book!!!!
+
+
+-- Lecture 14
+* next exam March 22nd. Closed book & no cheat sheets.   
+covers material up and until today.
+* PSET 2  is due on the 20th at 11:59pm
+
+use a grammar to specify test inputs.
+using a grammar as a generator allows generating strings that are in the langugage. ie. valid inputs.
+sometimes invalid inputs are needed. created using mutation. syntactic modification.   mutate symbols in a ground string or mutate grammar and derive ground strings. 
+mutation operator = rule that specifies variations of strings generated from a grammar. 
+mutant - result of one application of a mutant operator. mutant may be in L or not in L . mutate inputs to programs or mutate the programs themselves. 
+mutation adequate test suite distinguishes a program from its mutants. 
+programs good at finding syntactic variations are good at finding real program faults.
+
+if the mutant is an equivalent mutant, it cannot be killed. 
+
+insight: in practice, if software has a fault, there will usually be a set of mutants that can only be killed by a test case that also detects that fault. 
+
+approach: given a program p,
+1) create mutants for p
+2) remove redundant ones if possible
+3) generate a test suite for p
+4) run each test on p and its mutants to check mutant killing. 
+5) compute the mutation score for the test suite
+6) check p's outputs for tests that kill some mutants. 
+

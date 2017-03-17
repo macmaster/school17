@@ -37,4 +37,12 @@ process scheduling: when entering a latency-critical section, downgrade all non-
 subordinate multithreading: perform computations on behalf of a primary thread in the background.
 performance monitoring: execute profiling code (usually baked into the application executable) independently in the background.
 
+Performance vs. Throughput distinction.
+simultaneuous threads increase processor throughput by keeping resources utilized as much as possible. Degrade each other's performance by competing for shared resources. 
+
+slot prioritization affects fg only on current cycle.
+window partitioning can affect it on future cycles.
+	icount limiting or thread flushing.
+
+don't starve the bg threads too much...
 
