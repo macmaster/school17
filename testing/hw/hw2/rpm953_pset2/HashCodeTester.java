@@ -19,12 +19,6 @@ public class HashCodeTester {
      * calling the hashCode method on each of the two objects must produce the
      * same integer result.
      */
-    @Test
-    public void testHashCodeO() {
-        Object x = new Object();
-        Object y = x;
-        assertTrue(x.equals(y) && (x.hashCode() == y.hashCode()));
-    }
 
     @Test
     public void testHashCodeC() {
@@ -38,6 +32,31 @@ public class HashCodeTester {
         D x = new D("yes", 1);
         D y = new D("yes", 1);
         assertTrue(x.equals(y) && (x.hashCode() == y.hashCode()));
+    }
+
+    @Test
+    public void testHashCodeO() {
+        Object x = new Object();
+        Object y = x;
+        assertTrue(x.equals(y) && (x.hashCode() == y.hashCode()));
+    }
+
+    @Test
+    public void testHashCodeSameO() {
+        Object x = new Object();
+        assertTrue(x.hashCode() == x.hashCode());
+    }
+
+    @Test
+    public void testHashCodeSameC() {
+        C x = new C("yes");
+        assertTrue(x.hashCode() == x.hashCode());
+    }
+
+    @Test
+    public void testHashCodeSameD() {
+        D x = new D("yes", 1);
+        assertTrue(x.hashCode() == x.hashCode());
     }
 
 }
