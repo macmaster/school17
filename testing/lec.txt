@@ -721,3 +721,84 @@ approach: given a program p,
 5) compute the mutation score for the test suite
 6) check p's outputs for tests that kill some mutants. 
 
+Lecture X:
+hw3 optional hw4 due april 12th 11:59pm
+final exam in PAI 3.02
+read section on test process.
+
+integration testing: tests interfaces among components (that are aleady unit tested)
+scaffolding, extra code to support integration and testing.
+stub - emulates unimplemented functionality.
+driver - emulates calls to code under test.
+
+stubs emulate functionality that llows testing
+return some sort of useful value. that's the preffered approach.
+you can transform a check /  formal specification into a valid output from it.
+ex. loop over possible inputs with a check for the input value pair when the method is called.
+
+
+CTO problem what order to integrate and test?
+OO programs, classes have many dependencies. class using methods of another, inheriting from another, aggregatins objs of another.
+may have cycles, C calls D and D calls C.
+try to break cycles and minimize stubbing overall. stubbing is expensive.
+
+test plans. for the tests:
+how they're created.
+why they're created.
+how they're run.
+
+bigger picture on how to run the testing process.
+use the ieee template.
+
+oracle problem: is the output correct?
+hard problem to solve. 4 techniques.
+direct verification, redundant computations, consistency checks, data redundancy.
+
+redundant computation
+have another developer develop the other method
+compare outputs
+
+data redundancy
+use your understanding of how the method works
+switch the data but the output is the same. 
+
+
+
+nondeterministic initialization.
+Verify.getInt(0, 2) initializes to 0, 1, and 2. 
+nondeterministic.
+spits out a failure if one occurs across all 3 executions.
+
+download java path finder
+http://babelfish.arc.nasa.gov/trac/jpf/
+
+
+-- Lecture week 12a
+threads, test input gen with symbolic execution, bunch of other stuff.
+symbolic execution: 
+technique for executin a prog based on symbolic input values.
+systematically explores bounded execution paths. for each path, build a path condition. checks satisfiability of path condition. 
+"this symbol captures all inputs to the program."
+x = X ; y = Y
+X >? Y // consider both branches
+([ X <= Y ]) END	[ X > Y ] x = X + Y;
+					[ X > Y ] y = X + Y - Y = X;
+					[ X > Y ] x = X + Y - X = Y;
+					[ X > Y ] Y - X  >? 0
+					[ X > Y, Y - X <= 0 ] END		[ X > Y, Y - X > 0] assert false!;
+[ path conditions ] satisfy the path condition to execute that path. 
+look for contradictions. perform execution on only symbolically possible paths.
+
+--Lecture web application testing.
+ps5 and ps6 are out. 
+due may 5th. 11:59pm.
+final exam: thrs may 11 2-5pm PAI3.02
+
+testing web apps. how do you automate testing of web apps such as the graph coverage web application?
+FINAL EXAM BASICS: CHAPTERS 1-6 + TOPICS ON SLIDES.
+java pth finder. non-deterministic choice and symbolic execution.
+structure generation using repOk methods. 
+symbolic execution.
+
+DO THE FINAL EXAM QUESTIONS. the jpf stuff is not in the book. 
+the slides should be on canvas. 

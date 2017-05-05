@@ -22,6 +22,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author ronny
  */
 public class MinWebTestGenerator {
+    
+    public static final int numFaults = 27;
 	
 	public static void main(String[] a) {
 		String suite = new MinWebTestGenerator().createTestSuite();
@@ -48,6 +50,7 @@ public class MinWebTestGenerator {
 	
 	String testsuite() {
 		StringBuilder sb = new StringBuilder();
+		sb.append(faults() + "\n\n");
 		sb.append("public class MinWebTestSuite {\n\n");
 		sb.append(fields() + "\n\n");
 		sb.append(statics() + "\n\n");
@@ -81,7 +84,16 @@ public class MinWebTestGenerator {
 		return sb.toString();
 	}
 	
-	// implement any helper methods that you need in this class
+
+	/** logs the number of regression faults */
+	String faults(){
+	    StringBuilder builder = new StringBuilder();
+	    builder.append(String.format("/** number of test failures: %d \n", numFaults));
+	    builder.append(" * These failures don't arise from bugs. \n");
+	    builder.append(" * The tests need to be refactored to expect a max function based on new input. \n");
+	    builder.append(" */ ");
+	    return builder.toString();
+	}
 	
 	/** returns the parameter fields for the class */
 	String fields() {
@@ -126,14 +138,15 @@ public class MinWebTestGenerator {
 	 */
 	String testMethod(int id, String x, String y, String z, boolean click) {
 		StringBuilder builder = new StringBuilder();
-		String name = String.format("test%d", id);
+		String name = String.format("t%d", id);
 		builder.append("@Test \n");
 		builder.append(String.format("public void %s(){\n", name));
 		
 		// code for a web test case.
+		String file = "file:////home/ronny/school/testing/hw/min.html";
 		builder.append(String.format("// test: <%s, %s, %s, %s> \n", x, y, z, (click ? "click" : "noclick")));
 		builder.append("// edit the next line to enter the location of \"min.html\" on your file system \n");
-		builder.append("driver.get(\"file:///C:/Users/ronny/Desktop/EE/testing/hw/min.html\"); \n");
+		builder.append(String.format("driver.get(\"%s\"); \n", file));
 		builder.append(String.format("driver.findElement(By.id(\"x\")).sendKeys(\"%s\"); // enter value for x \n", x));
 		builder.append(String.format("driver.findElement(By.id(\"y\")).sendKeys(\"%s\"); // enter value for y \n", y));
 		builder.append(String.format("driver.findElement(By.id(\"z\")).sendKeys(\"%s\"); // enter value for z \n", z));

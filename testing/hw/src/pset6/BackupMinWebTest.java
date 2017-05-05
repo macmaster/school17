@@ -37,7 +37,7 @@ public class BackupMinWebTest {
 	public void t0() {
 		
 		// edit the next line to enter the location of "min.html" on your file system
-		driver.get("file:///C:/Users/ronny/Desktop/EE/testing/hw/min.html");
+		driver.get("file:///C:/Users/ronny/Desktop/EE/testing/hw/minandmax.html");
 		driver.findElement(By.id("x")).sendKeys("0"); // enter value for x
 		driver.findElement(By.id("y")).sendKeys("0"); // enter value for z
 		driver.findElement(By.id("z")).sendKeys("0"); // enter value for y
