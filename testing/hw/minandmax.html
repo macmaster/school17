@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="Course" content="UT EE360T (Spring 2017)">
+    <title>Min and Max Calculator</title>
+    <script>
+      function minSelected() {
+        document.getElementById("computeButton").value = "Calculate min(x, y, z)";
+      }
+      function maxSelected() {
+        document.getElementById("computeButton").value = "Calculate max(x, y, z)";
+      }
+      function compute() {
+        var x = document.getElementById("x").value;
+        var y = document.getElementById("y").value;
+        var z = document.getElementById("z").value;
+        if (x == "" || isNaN(x) || y == "" || isNaN(y) || z == "" || isNaN(z)) {
+          document.getElementById("result").textContent = "Please enter integer values only!";
+          return;
+        }
+        var minormax = document.getElementById("min").checked; 
+        var result = (minormax) ? minimum(x, y, z) : maximum(x, y, z);
+        document.getElementById("result").textContent = 
+           ((minormax) ? "min" : "max") + "(" + x + ", " + y + ", " + z + ") = " + result;
+      }
+      function minimum(x, y, z) {
+        return Math.min(Math.min(x, y), Math.min(x, z));
+      }
+      function maximum(x, y, z) {
+        return Math.max(Math.max(x, y), Math.max(x, z));
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Min and Max Calculator</h1>
+    <input type="radio" name="func" id="min" onclick="minSelected()">Min
+    <input type="radio" name="func" id="max" checked="checked" onclick="maxSelected()">Max
+    <br><br>
+    x: <input id="x" placeholder="Enter integer value for x"><br>
+    y: <input id="y" placeholder="Enter integer value for y"><br>
+    z: <input id="z" placeholder="Enter integer value for z"><br><br>
+    <input type="button" id="computeButton" value="Calculate min(x, y, z)" onclick="compute()">
+    <br>
+    <h2 id="result"></h2>
+  </body>
+</html>

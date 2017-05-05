@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="Course" content="UT EE360T (Spring 2017)">
+    <title>Min Calculator</title>
+    <script>
+      function compute() {
+        var x = document.getElementById("x").value;
+        var y = document.getElementById("y").value;
+        var z = document.getElementById("z").value;
+        if (x == "" || isNaN(x) || y == "" || isNaN(y) || z == "" || isNaN(z)) {
+          document.getElementById("result").textContent = "Please enter integer values only!";
+          return;
+        }
+        var result = minimum(x, y, z);
+        document.getElementById("result").textContent =
+           "min(" + x + ", " + y + ", " + z + ") = " + result;
+      }
+      function minimum(x, y, z) {
+        return Math.min(Math.min(x, y), Math.min(x, z));
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Min Calculator</h1>
+    x: <input id="x" placeholder="Enter integer value for x"><br>
+    y: <input id="y" placeholder="Enter integer value for y"><br>
+    z: <input id="z" placeholder="Enter integer value for z"><br><br>
+    <input type="button" id="computeButton" value="Calculate min(x, y, z)" onclick="compute()">
+    <br>
+    <h2 id="result"></h2>
+  </body>
+</html>
