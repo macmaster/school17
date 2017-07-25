@@ -1,0 +1,157 @@
+\documentclass[a4paper,10pt]{article}
+
+%A Few Useful Packages
+\usepackage{marvosym}
+\usepackage{fontspec} 					%for loading fonts
+\usepackage{xunicode,xltxtra,url,parskip} 	%other packages for formatting
+\RequirePackage{color,graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[big]{layaureo} 				%better formatting of the A4 page
+% an alternative to Layaureo can be ** \usepackage{fullpage} **
+\usepackage{supertabular} 				%for Grades
+\usepackage{titlesec}					%custom \section
+
+%Setup hyperref package, and colours for links
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
+
+% import text coloring
+\usepackage{color}
+\definecolor{medRed}{HTML}{880000}
+\definecolor{darkRed}{HTML}{440000}
+\definecolor{medGray}{HTML}{555555}
+\definecolor{medGray}{HTML}{333333}
+
+%FONTS
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont[SmallCapsFont = Fontin SmallCaps]{Fontin}
+%%% modified for Karol Kozioł for ShareLaTeX use
+\setmainfont[
+SmallCapsFont = Fontin-SmallCaps.otf,
+BoldFont = Fontin-Bold.otf,
+ItalicFont = Fontin-Italic.otf
+]
+{Fontin.otf}
+%%%
+
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3pt}{3pt}
+%Tweak a bit the top margin
+%\addtolength{\voffset}{-1.3cm}
+
+%Italian hyphenation for the word: ''corporations''
+\hyphenation{im-pre-se}
+
+%-------------WATERMARK TEST [**not part of a CV**]---------------
+\usepackage[absolute]{textpos}
+
+\setlength{\TPHorizModule}{30mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{2mm}{0.65\paperheight}
+\setlength{\parindent}{0pt}
+
+%--------------------BEGIN DOCUMENT----------------------
+\begin{document}
+
+%WATERMARK TEST [**not part of a CV**]---------------
+%\font\wm=''Baskerville:color=787878'' at 8pt
+%\font\wmweb=''Baskerville:color=FF1493'' at 8pt
+%{\wm 
+%	\begin{textblock}{1}(0,0)
+%		\rotatebox{-90}{\parbox{500mm}{
+%			Typeset by Alessandro Plasmati with \XeTeX\  \today\ for 
+%			{\wmweb \href{http://www.aleplasmati.comuv.com}{aleplasmati.comuv.com}}
+%		}
+%	}
+%	\end{textblock}
+%}
+
+\pagestyle{empty} % non-numbered pages
+
+\font\fb=''[cmr10]'' %for use with \LaTeX command
+
+%--------------------TITLE-------------
+\par{\centering
+	{\color{medRed}{\Huge Ronald \textsc{Macmaster}}} \\\vspace{3mm}
+	{\color{darkRed}{\normalsize \textit{Software Engineer (Distributed Systems / Enterprise Applications)}}} \\\vspace{3mm}
+\par}
+
+%--------------------SECTIONS-----------------------------------
+% Section: Overview / Personal Details
+\section{Overview}
+
+\begin{tabular}{rl}
+    \textsc{Hometown:}	& Honolulu, Hawaii : October 5th, 1996 \\
+    \textsc{Address:}   & 709 West 26th Street, Apartment \#18, Austin, TX 78705 \\
+	\textsc{email:}     & \href{mailto:ronnymacmaster@gmail.com}{ronnymacmaster@gmail.com} \\
+	\textsc{Phone:}     & (808) 206-1614 \\ 
+	\textsc{linkedin:}	& \href{https://linkedin.com/in/macmasterapi}{https://linkedin.com/in/macmasterapi} \\
+	\textsc{\color{medRed}github:}	& \href{https://github.com/ronny-macmaster}{https://github.com/ronny-macmaster} 
+\end{tabular}
+
+% Section: Work Experience
+\section{Work Experience}
+\begin{tabular}{r|p{11cm}}
+
+% Bloomberg intern
+\emph{Current} & \textsc{\color{medRed}Bloomberg L.P.}, New York, NY \\
+\textsc{May-Aug 2017}&\emph{Software Engineering Intern (Infrastructure)} \\
+&\footnotesize{
+Developed an attachable Java agent for exporting client-side HBase metrics; \newline
+Contributed \textcolor{red}{two} patches to Apache Hadoop and HBase; \newline
+Programmed test-client applications using \textit{MapReduce, YARN, HDFS, Zookeeper, Pig, etc...} \newline 
+Assisted tenants and co-workers with Hadoop culster management on the BACH team; 
+}\\\multicolumn{2}{c}{} \\
+
+% IBM intern
+\textsc{May-Aug 2016} & \textsc{\color{medRed}International Business Machines (IBM)}, Austin, TX \\
+&\emph{Java Enterprise Development Intern} \\
+&\footnotesize{
+Architected and programmed RESTful web services with Java EE 7 and Liberty Web Server; \newline
+Built a CouchDB to DB2 (NoSQL to SQL) adapter script in functional PHP; \newline
+Operated on an agile sprint team (youngest member of the team / 5 graduate teammates); \newline
+Implemented a DevOps pipeline using \textit{Maven, Jenkins, Selenium, JUnit, and Mockito};  
+}\\ \multicolumn{2}{c}{} \\
+
+% YMCA swim instructor
+\textsc{May-Aug 2014 \& 2015} & \textsc{\color{medRed}Nu'uanu Y.M.C.A.}, Honolulu, HI \\
+&\emph{Swim Instructor (Ages 3-16)} \\
+&\footnotesize{
+Instructor for 200+ children in swimming and water safety skills; \newline
+Improved skills in communication, teaching and public relations; \newline
+Worked in an entry level position for a large non-profit corporation; 
+}\end{tabular}
+
+% Section: Education
+\section{Education}
+\begin{tabular}{rl}	
+
+\textsc{December} 2017 
+& \textbf{\color{medRed} University of Texas, Austin} (Bachelor of Science in \textsc{Engineering}) \\
+& Major: Electrical and Computer Engineering (ECE) \\
+& Emphasis: Software Engineering and Computer Architecture \\
+& Research: Lab for Computer Architecture (\href{https://lca.ece.utexas.edu}{lca.ece.utexas.edu}) \\
+&\normalsize \textsc{Overall Gpa}: \textbf{\color{red}{4.0}} \\[3mm]
+
+\textsc{May} 2014 
+& Roosevelt High School, Honolulu  (\textsc{Gpa}: 4.2)
+\end{tabular}
+
+% Section: Skills
+\section{Skills}
+\begin{tabular}{rl}
+Proficient Languages:& \textsc{\color{medRed}Java}, \textsc{C/C++}, \textsc{Python}, \textsc{PHP} \\
+Software Stack:& \textsc{Linux}, \textsc{git}, \textsc{HDFS}, \textsc{YARN}, \textsc{MapReduce}, \textsc{HBase}, \textsc{Zookeeper}, \textsc{Kafka}, \textsc{Pig} \\
+Secondary:& \textsc{C\#}, my\textsc{SQL}, \textsc{html, CSS, JavaScript}, \textsc{Octave}, x86
+\end{tabular}
+
+% Section: Interests and Activities
+\section{Interests and Activities}
+\small Distributed Systems, Open-Source, Programming, Mathematics, Entrepreneurship, \\
+Graph Theory, Logic, Machine Learning, Robotics, Modeling, Finance, Economics, Politics, \\
+American History, Drums, Korean Language and History, Swimming 
+
+%------------------------------------------------------------------------
+
+\end{document}
