@@ -54,40 +54,29 @@ ItalicFont = Fontin-Italic.otf
 %--------------------BEGIN DOCUMENT----------------------
 \begin{document}
 
-%WATERMARK TEST [**not part of a CV**]---------------
-%\font\wm=''Baskerville:color=787878'' at 8pt
-%\font\wmweb=''Baskerville:color=FF1493'' at 8pt
-%{\wm 
-%	\begin{textblock}{1}(0,0)
-%		\rotatebox{-90}{\parbox{500mm}{
-%			Typeset by Alessandro Plasmati with \XeTeX\  \today\ for 
-%			{\wmweb \href{http://www.aleplasmati.comuv.com}{aleplasmati.comuv.com}}
-%		}
-%	}
-%	\end{textblock}
-%}
-
 \pagestyle{empty} % non-numbered pages
 
 \font\fb=''[cmr10]'' %for use with \LaTeX command
 
 %--------------------TITLE-------------
 \par{\centering
-	{\color{medRed}{\Huge Ronald \textsc{Macmaster}}} \\\vspace{3mm}
-	{\color{darkRed}{\normalsize \textit{Software Engineer (Distributed Systems / Enterprise Applications)}}} \\\vspace{3mm}
+	{\color{medRed}{\Huge Ronald \textsc{Macmaster}}} \\\vspace{2mm}
+	{\color{darkRed}{\normalsize \textit{Software Engineer (Distributed Systems)}}} \\\vspace{2mm}
 \par}
 
 %--------------------SECTIONS-----------------------------------
 % Section: Overview / Personal Details
 \section{Overview}
-
 \begin{tabular}{rl}
-    \textsc{Hometown:}	& Honolulu, Hawaii : October 5th, 1996 \\
-    \textsc{Address:}   & 709 West 26th Street, Apartment \#18, Austin, Texas 78705 \\
-	\textsc{email:}     & \href{mailto:ronnymacmaster@gmail.com}{ronnymacmaster@gmail.com} \\
-	\textsc{Phone:}     & (808) 206-1614 \\ 
-	\textsc{linkedin:}	& \href{https://linkedin.com/in/macmasterapi}{https://linkedin.com/in/macmasterapi} \\
-	\textsc{\color{medRed}github:}	& \href{https://github.com/ronny-macmaster}{https://github.com/ronny-macmaster} 
+  \textsc{Hometown:} & Honolulu, Hawaii : October 5th, 1996 \\
+  \textsc{Address:} & 28-21 Astoria Boulevard, Apartment \#5C, New York, NY 11102 \\
+	\textsc{email:} & \href{mailto:ronnymacmaster@gmail.com}{ronnymacmaster@gmail.com} \\
+	\textsc{Phone:} & (808) 206-1614 \\ 
+	\textsc{linkedin:} & \href{https://linkedin.com/in/macmasterapi}{https://linkedin.com/in/macmasterapi} \\
+	\textsc{\color{medRed}github:} & \href{https://github.com/ronny-macmaster}{https://github.com/ronny-macmaster}
+  \vspace{1mm} \\
+  \textsc{About:}	& I'm a distributed systems engineer / researcher that lives on Linux systems. \\
+    & Check out my software projects on GitHub.
 \end{tabular}
 
 % Section: Work Experience
@@ -96,31 +85,29 @@ ItalicFont = Fontin-Italic.otf
 
 % Bloomberg intern
 \emph{Current} & \textsc{\color{medRed}Bloomberg L.P.}, New York, NY \\
-\textsc{May-Aug 2017}&\emph{Software Engineering Intern (Infrastructure)} \\
+\textsc{Summer 2017}&\emph{Software Engineer (Hadoop Infrastructure)} \\
 &\footnotesize{
-Developed an attachable Java agent for exporting client-side HBase metrics; \newline
+Automated backup and restore schedules for HDFS and HBase data; \newline
+Designed a Hadoop cluster dashboard using React and Redux; \newline
 Contributed \textcolor{red}{two} patches to Apache Hadoop and HBase; \newline
-Programmed test-client applications using \textit{MapReduce, YARN, HDFS, Zookeeper, Pig, etc...} \newline 
-Assisted tenants and co-workers with Hadoop culster management on the BACH team; 
+Operated two multi-tenant Hadoop clusters (30+ nodes, 1000s of jobs / day); 
 }\\\multicolumn{2}{c}{} \\
 
 % IBM intern
-\textsc{May-Aug 2016} & \textsc{\color{medRed}International Business Machines (IBM)}, Austin, TX \\
+\textsc{Summer 2016} & \textsc{\color{medRed}International Business Machines (IBM)}, Austin, TX \\
 &\emph{Java Enterprise Development Intern} \\
 &\footnotesize{
-Architected and programmed RESTful web services with Java EE 7 and Liberty Web Server; \newline
+Architected and programmed RESTful web services with Java EE 7; \newline
 Built a CouchDB to DB2 (NoSQL to SQL) adapter script in functional PHP; \newline
-Operated on an agile sprint team (youngest member of the team / 5 graduate teammates); \newline
 Implemented a DevOps pipeline using \textit{Maven, Jenkins, Selenium, JUnit, and Mockito};  
 }\\ \multicolumn{2}{c}{} \\
 
 % YMCA swim instructor
-\textsc{May-Aug 2014 \& 2015} & \textsc{\color{medRed}Nu'uanu Y.M.C.A.}, Honolulu, HI \\
+\textsc{Summer 2014 \& 2015} & \textsc{\color{medRed}Nu'uanu Y.M.C.A.}, Honolulu, HI \\
 &\emph{Swimming Instructor} \\
 &\footnotesize{
 Instructor for 200+ children (ages 3-16) in swimming and water safety skills; \newline
 Improved skills in communication, teaching and public relations; \newline
-Worked in an entry level position for a large non-profit corporation; 
 }\end{tabular}
 
 % Section: Education
@@ -141,15 +128,14 @@ Worked in an entry level position for a large non-profit corporation;
 % Section: Skills
 \section{Skills}
 \begin{tabular}{rl}
-Proficient Languages:& \textsc{\color{medRed}Java}, \textsc{C/C++}, \textsc{Python}, \textsc{PHP} \\
-Software Stack:& \textsc{Linux}, \textsc{git}, \textsc{HDFS}, \textsc{YARN}, \textsc{MapReduce}, \textsc{HBase}, \textsc{Zookeeper}, \textsc{Kafka}, \textsc{Pig} \\
-Secondary:& \textsc{C\#}, my\textsc{SQL}, \textsc{html, CSS, JavaScript}, \textsc{Octave}, x86
+Languages:& \textsc{\color{medRed}Java}, \textsc{Ruby}, \textsc{Python}, \textsc{C/C++}, \textsc{Javascript} \\
+  Software Stack:& \textsc{Linux}, \textsc{Hadoop}, \textsc{Chef}, \textsc{React \& Redux} \\
 \end{tabular}
 
 % Section: Interests and Activities
 \section{Interests and Activities}
-\small Distributed Systems, Open-Source, Programming, Mathematics, Entrepreneurship, \\
-Graph Theory, Logic, Machine Learning, Robotics, Modeling, Finance, Economics, Politics, \\
+\small Linux, Distributed Systems, Open-Source, Programming, Mathematics, Entrepreneurship, \\
+Graph Theory, Logic, Machine Learning, Finance, Economics, Politics, \\
 American History, Drums, Korean Language and History, Swimming 
 
 %------------------------------------------------------------------------
